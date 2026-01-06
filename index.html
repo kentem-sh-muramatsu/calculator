@@ -94,6 +94,32 @@
             float: right;
         }
 
+        .copy-button {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        .copy-button:hover {
+            background: #5568d3;
+        }
+
+        .copy-button:active {
+            transform: scale(0.98);
+        }
+
+        .copy-button.copied {
+            background: #48bb78;
+        }
+
     </style>
 </head>
 <body>
@@ -111,6 +137,7 @@
         </div>
 
         <div class="results">
+            <button class="copy-button" id="copyButton">📋 結果をコピー</button>
             <div class="result-item">
                 <span class="result-label">
                     加算

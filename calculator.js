@@ -8,6 +8,32 @@ const subtractionResult = document.getElementById('subtraction');
 const multiplicationResult = document.getElementById('multiplication');
 const divisionResult = document.getElementById('division');
 
+// コピーボタンの取得
+const copyButton = document.getElementById('copyButton');
+
+/**
+ * localStorageから値を読み込む
+ */
+function loadFromStorage() {
+    const savedNum1 = localStorage.getItem('calculator_num1');
+    const savedNum2 = localStorage.getItem('calculator_num2');
+    
+    if (savedNum1 !== null) {
+        number1Input.value = savedNum1;
+    }
+    if (savedNum2 !== null) {
+        number2Input.value = savedNum2;
+    }
+}
+
+/**
+ * localStorageに値を保存する
+ */
+function saveToStorage() {
+    localStorage.setItem('calculator_num1', number1Input.value);
+    localStorage.setItem('calculator_num2', number2Input.value);
+}
+
 /**
  * 計算処理を実行して結果を表示
  */
@@ -66,9 +92,46 @@ function divide(a, b) {
     return (a / b).toFixed(2);
 }
 
-// 入力値が変更されたら自動的に計算
-number1Input.addEventListener('input', calculate);
-number2Input.addEventListener('input', calculate);
+// 入力値が変更されたら自動的に計算して保存
+number1Input.addEventListener('input', () => {
+    calculate();
+    saveToStorage();
+});
+number2Input.addEventListener('input', () => {
+    calculate();
+    saveToStorage();
+});
 
-// 初期表示時に計算を実行
+// コピーボタンのクリックイベント
+copyButton.addEventListener('click', async () => {
+    // 結果をテキスト形式で取得
+    const resultText = `加算 ${additionResult.textContent}
+減算 ${subtractionResult.textContent}
+乗算 ${multiplicationResult.textContent}
+除算 ${divisionResult.textContent}`;
+
+    try {
+        // クリップボードにコピー
+        await navigator.clipboard.writeText(resultText);
+        
+        // ボタンの表示を変更
+        copyButton.textContent = '✓ コピーしました！';
+        copyButton.classList.add('copied');
+        
+        // 2秒後に元に戻す
+        setTimeout(() => {
+            copyButton.textContent = '📋 結果をコピー';
+            copyButton.classList.remove('copied');
+        }, 2000);
+    } catch (err) {
+        // エラー時
+        copyButton.textContent = '❌ コピー失敗';
+        setTimeout(() => {
+            copyButton.textContent = '📋 結果をコピー';
+        }, 2000);
+    }
+});
+
+// 初期表示時にlocalStorageから復元して計算を実行
+loadFromStorage();
 calculate();
