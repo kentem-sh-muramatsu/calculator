@@ -127,40 +127,62 @@
         <h1>🧮 計算アプリ</h1>
         
         <div class="input-group">
-            <label for="number1">数値 1</label>
-            <input type="number" id="number1" placeholder="最初の数値を入力" value="0" step="any">
+            <label for="number1">2026年の累計実績</label>
+            <input type="number" id="number1" placeholder="2026年の累計実績を入力" value="0" step="any">
         </div>
 
         <div class="input-group">
-            <label for="number2">数値 2</label>
-            <input type="number" id="number2" placeholder="2番目の数値を入力" value="0" step="any">
+            <label for="number2">2025年の累計実績</label>
+            <input type="number" id="number2" placeholder="2025年の累計実績を入力" value="0" step="any">
+        </div>
+
+        <div class="input-group">
+            <label for="number3">本日の客数</label>
+            <input type="number" id="number3" placeholder="本日の客数を入力" value="0" step="any">
+        </div>
+
+        <div class="input-group">
+            <label for="number4">本日の点数</label>
+            <input type="number" id="number4" placeholder="本日の点数を入力" value="0" step="any">
+        </div>
+
+        <div class="input-group">
+            <label for="number5">本日の売り上げ</label>
+            <input type="number" id="number5" placeholder="本日の売り上げを入力" value="0" step="any">
         </div>
 
         <div class="results">
             <button class="copy-button" id="copyButton">📋 結果をコピー</button>
             <div class="result-item">
                 <span class="result-label">
-                    加算
+                    2025 累計比
                 </span>
                 <span class="result-value" id="addition">0</span>
             </div>
             <div class="result-item">
                 <span class="result-label">
-                    減算
+                    貯金額
                 </span>
                 <span class="result-value" id="subtraction">0</span>
             </div>
+
             <div class="result-item">
                 <span class="result-label">
-                    乗算
+                    【セット率】
                 </span>
-                <span class="result-value" id="multiplication">0</span>
+                <span class="result-value" id="setRate">0</span>
             </div>
             <div class="result-item">
                 <span class="result-label">
-                    除算
+                    【1点単価】
                 </span>
-                <span class="result-value" id="division">0</span>
+                <span class="result-value" id="unitPrice">0</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">
+                    【客単価】
+                </span>
+                <span class="result-value" id="avgPrice">0</span>
             </div>
         </div>
     </div>
