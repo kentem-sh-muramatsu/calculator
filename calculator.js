@@ -233,11 +233,11 @@ number5Input.addEventListener('blur', () => {
 // コピーボタンのクリックイベント
 copyButton.addEventListener('click', async () => {
     // 結果をテキスト形式で取得
-    const resultText = `2025年の累計比 ${additionResult.textContent}
+    const resultText = `2025 累計比 ${additionResult.textContent}
 貯金額 ${subtractionResult.textContent}
-セット率 ${setRateResult.textContent}
-1点単価 ${unitPriceResult.textContent}
-客単価 ${avgPriceResult.textContent}`;
+【セット率】 ${setRateResult.textContent}
+【1点単価】 ${unitPriceResult.textContent}
+【客単価】 ${avgPriceResult.textContent}`;
 
     try {
         // クリップボードにコピー
