@@ -49,7 +49,7 @@
             font-size: 14px;
         }
 
-        input[type="number"] {
+        input[type="text"] {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
@@ -58,7 +58,7 @@
             transition: border-color 0.3s;
         }
 
-        input[type="number"]:focus {
+        input[type="text"]:focus {
             outline: none;
             border-color: #667eea;
         }
@@ -143,7 +143,7 @@
                 font-size: 13px;
             }
 
-            input[type="number"] {
+            input[type="text"] {
                 padding: 10px;
                 font-size: 16px;
             }
@@ -174,27 +174,27 @@
         
         <div class="input-group">
             <label for="number1">2026年の累計実績</label>
-            <input type="number" id="number1" placeholder="2026年の累計実績を入力" step="any">
+            <input type="text" id="number1" placeholder="2026年の累計実績を入力" inputmode="numeric">
         </div>
 
         <div class="input-group">
             <label for="number2">2025年の累計実績</label>
-            <input type="number" id="number2" placeholder="2025年の累計実績を入力" step="any">
+            <input type="text" id="number2" placeholder="2025年の累計実績を入力" inputmode="numeric">
         </div>
 
         <div class="input-group">
             <label for="number3">本日の客数</label>
-            <input type="number" id="number3" placeholder="本日の客数を入力" step="any">
+            <input type="text" id="number3" placeholder="本日の客数を入力" inputmode="numeric">
         </div>
 
         <div class="input-group">
             <label for="number4">本日の点数</label>
-            <input type="number" id="number4" placeholder="本日の点数を入力" step="any">
+            <input type="text" id="number4" placeholder="本日の点数を入力" inputmode="numeric">
         </div>
 
         <div class="input-group">
             <label for="number5">本日の売り上げ</label>
-            <input type="number" id="number5" placeholder="本日の売り上げを入力" step="any">
+            <input type="text" id="number5" placeholder="本日の売り上げを入力" inputmode="numeric">
         </div>
 
         <div class="results">
@@ -233,4 +233,4 @@
         </div>
     </div>
 
-<script src="calculator.js?v=1.4"></script>
+<script src="calculator.js?v=2.0"></script>

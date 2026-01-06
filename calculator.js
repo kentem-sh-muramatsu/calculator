@@ -57,12 +57,12 @@ function calculate() {
         return;
     }
 
-    // 入力値を数値に変換
-    const num1 = parseFloat(number1Input.value) || 0; // 2026年の累計実績
-    const num2 = parseFloat(number2Input.value) || 0; // 2025年の累計実績
-    const num3 = parseFloat(number3Input.value) || 0; // 本日の客数
-    const num4 = parseFloat(number4Input.value) || 0; // 本日の点数
-    const num5 = parseFloat(number5Input.value) || 0; // 本日の売り上げ
+    // 入力値を数値に変換（カンマを削除してから変換）
+    const num1 = parseFloat(number1Input.value.replace(/,/g, '')) || 0; // 2026年の累計実績
+    const num2 = parseFloat(number2Input.value.replace(/,/g, '')) || 0; // 2025年の累計実績
+    const num3 = parseFloat(number3Input.value.replace(/,/g, '')) || 0; // 本日の客数
+    const num4 = parseFloat(number4Input.value.replace(/,/g, '')) || 0; // 本日の点数
+    const num5 = parseFloat(number5Input.value.replace(/,/g, '')) || 0; // 本日の売り上げ
 
     // 各計算結果を表示
     // 2025年の累計比 = 2026年の累計実績 / 2025年の累計実績 * 100
@@ -79,6 +79,40 @@ function calculate() {
     
     // 客単価 = 本日の売り上げ / 客数
     avgPriceResult.textContent = calculateAvgPrice(num5, num3);
+}
+
+/**
+ * 入力フィールドの値をカンマ付きにフォーマット
+ */
+function formatInput(input) {
+    // 現在の値を取得
+    let value = input.value;
+    
+    // カンマを削除して数値のみを取得
+    value = value.replace(/,/g, '').trim();
+    
+    // 空の場合は何もしない
+    if (value === '') {
+        return;
+    }
+    
+    // 数値に変換
+    const num = parseFloat(value);
+    
+    // 有効な数値の場合、カンマ区切りでフォーマット
+    if (!isNaN(num)) {
+        input.value = num.toLocaleString('ja-JP');
+    } else {
+        // 無効な値の場合は元の値を維持
+        input.value = value;
+    }
+}
+
+/**
+ * 入力フィールドのカンマを削除
+ */
+function unformatInput(input) {
+    input.value = input.value.replace(/,/g, '');
 }
 
 /**
@@ -145,24 +179,53 @@ function calculateAvgPrice(sales, customers) {
     return '¥' + Math.floor(sales / customers).toLocaleString('ja-JP');
 }
 
-// 入力値が変更されたら自動的に計算して保存
+// 入力値が変更されたら自動的に計算（保存はblurで行う）
 number1Input.addEventListener('input', () => {
     calculate();
-    saveToStorage();
 });
 number2Input.addEventListener('input', () => {
     calculate();
-    saveToStorage();
 });
 number3Input.addEventListener('input', () => {
     calculate();
-    saveToStorage();
 });
 number4Input.addEventListener('input', () => {
     calculate();
-    saveToStorage();
 });
 number5Input.addEventListener('input', () => {
+    calculate();
+});
+
+// フォーカス時にカンマを削除
+number1Input.addEventListener('focus', () => unformatInput(number1Input));
+number2Input.addEventListener('focus', () => unformatInput(number2Input));
+number3Input.addEventListener('focus', () => unformatInput(number3Input));
+number4Input.addEventListener('focus', () => unformatInput(number4Input));
+number5Input.addEventListener('focus', () => unformatInput(number5Input));
+
+// フォーカスを外した時にカンマをつけて保存
+number1Input.addEventListener('blur', () => {
+    formatInput(number1Input);
+    calculate();
+    saveToStorage();
+});
+number2Input.addEventListener('blur', () => {
+    formatInput(number2Input);
+    calculate();
+    saveToStorage();
+});
+number3Input.addEventListener('blur', () => {
+    formatInput(number3Input);
+    calculate();
+    saveToStorage();
+});
+number4Input.addEventListener('blur', () => {
+    formatInput(number4Input);
+    calculate();
+    saveToStorage();
+});
+number5Input.addEventListener('blur', () => {
+    formatInput(number5Input);
     calculate();
     saveToStorage();
 });
