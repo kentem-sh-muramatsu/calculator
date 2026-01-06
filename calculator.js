@@ -1,3 +1,6 @@
+// DOM読み込み完了後に実行
+document.addEventListener('DOMContentLoaded', function() {
+
 // 入力要素の取得
 const number1Input = document.getElementById('number1'); // 2026年の累計実績
 const number2Input = document.getElementById('number2'); // 2025年の累計実績
@@ -47,6 +50,13 @@ function saveToStorage() {
  * 計算処理を実行して結果を表示
  */
 function calculate() {
+    // 要素が存在しない場合は処理を中断
+    if (!number1Input || !number2Input || !number3Input || !number4Input || !number5Input ||
+        !additionResult || !subtractionResult || !setRateResult || !unitPriceResult || !avgPriceResult) {
+        console.error('必要な要素が見つかりません');
+        return;
+    }
+
     // 入力値を数値に変換
     const num1 = parseFloat(number1Input.value) || 0; // 2026年の累計実績
     const num2 = parseFloat(number2Input.value) || 0; // 2025年の累計実績
@@ -191,3 +201,4 @@ copyButton.addEventListener('click', async () => {
 // 初期表示時にlocalStorageから復元して計算を実行
 loadFromStorage();
 calculate();
+}); // DOMContentLoaded終了
